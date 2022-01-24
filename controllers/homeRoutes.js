@@ -75,14 +75,21 @@ router.get("/singlepost/:id", async (req, res) => {
 
 router.get("/profile", withAuth, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-      include: [{ model: Post }],
-    });
-    const user = userData.get({ plain: true });
-
+    const postsData = await Post.findAll(
+      {
+        where: {
+          user_id: req.session.user_id,
+        },
+      }
+      //   {
+      //     attributes: { exclude: ["password"] },
+      //     include: [{ model: Post }],
+      //   }
+    );
+    const posts = postsData.map((post) => post.get({ plain: true }));
+    console.log(posts);
     res.render("profile", {
-      ...user,
+      posts,
       logged_in: true,
     });
   } catch (err) {

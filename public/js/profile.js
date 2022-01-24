@@ -1,47 +1,49 @@
-const newFormHandler = async(event) => {
-    event.preventDefault();
+const newFormHandler = async (event) => {
+  event.preventDefault();
 
-    const name = document.querySelector('#post-name').value.trim();
+  const title = document.querySelector("#post-title").value.trim();
 
-    const description = document.querySelector('#post-desc').value.trim();
+  const description = document.querySelector("#post-desc").value.trim();
 
-    if (name && description) {
-        const response = await fetch(`/api/posts`, {
-            method: 'POST',
-            body: JSON.stringify({ name, description }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+  if (title && description) {
+    const response = await fetch(`/api/posts`, {
+      method: "POST",
+      body: JSON.stringify({ title, description }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-        if (response.ok) {
-            document.location.replace('/profile');
-        } else {
-            alert('Failed to create post');
-        }
+    if (response.ok) {
+      console.log(response.body);
+      console.log(response);
+      //   document.location.replace("/profile");
+    } else {
+      alert("Failed to create post");
     }
+  }
 };
 
-const delButtonHandler = async(event) => {
-    if (event.target.hasAttribute('data-id')) {
-        const id = event.target.getAttribute('data-id');
+const delButtonHandler = async (event) => {
+  if (event.target.hasAttribute("data-id")) {
+    const id = event.target.getAttribute("data-id");
 
-        const response = await fetch(`/api/posts/${id}`, {
-            method: 'DELETE',
-        });
+    const response = await fetch(`/api/posts/${id}`, {
+      method: "DELETE",
+    });
 
-        if (response.ok) {
-            document.location.replace('/profile');
-        } else {
-            alert('Failed to delete post');
-        }
+    if (response.ok) {
+      document.location.replace("/profile");
+    } else {
+      alert("Failed to delete post");
     }
+  }
 };
 
 document
-    .querySelector('.new-post-form')
-    .addEventListener('submit', newFormHandler);
+  .querySelector("#create-post-btn")
+  .addEventListener("click", newFormHandler);
 
-document
-    .querySelector('#deleteBtn')
-    .addEventListener('click', delButtonHandler);
+// document
+//   .querySelector("#deleteBtn")
+//   .addEventListener("click", delButtonHandler);
