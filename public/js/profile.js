@@ -15,9 +15,11 @@ const newFormHandler = async (event) => {
     });
 
     if (response.ok) {
+      title.value = "";
+      description.value = "";
       console.log(response.body);
       console.log(response);
-      //   document.location.replace("/profile");
+      document.location.reload();
     } else {
       alert("Failed to create post");
     }
@@ -44,6 +46,6 @@ document
   .querySelector("#create-post-btn")
   .addEventListener("click", newFormHandler);
 
-// document
-//   .querySelector("#deleteBtn")
-//   .addEventListener("click", delButtonHandler);
+document
+  .querySelector("#deleteBtn")
+  .addEventListener("click", delButtonHandler);
