@@ -14,3 +14,7 @@ https://github.com/jamierose528/tech-blog
 https://stark-crag-23779.herokuapp.com/
 
 ## Screenshots
+
+![Screenshot 1](assets/images/screenshot1.png)
+![Screenshot 2](assets/images/screenshot2.png)
+![Screenshot 3](assets/images/screenshot3.png)
